@@ -77,15 +77,35 @@ module dogbunnypuzzle {
         )
     }
 
+
     action TakeEdge(entity: Entity, edge: Edge): bool = all {
         CanDoMove(entity, edge, curState),
         curState' = DoMove(entity, edge, curState)
     }
+    
+    action step: bool = {
+        nondet entity = oneOf(Entities)
+        nondet edge = oneOf(UniEdges.keys().union(BiEdges.keys()))
+        TakeEdge(entity, edge)
+    }
+
+    val entitiesAreAlwaysInPlaces: bool = {
+        Entities.forall(entity => curState.keys().contains(entity) and curState.get(entity).in(Places))
+    }
+
+    val desiredState = Map(
+        1 -> "carrot",
+        2 -> "carrot",
+        3 -> "bone"
+    )
+
+    val reachDesiredState: bool = {
+        curState != desiredState
+    }
 
     run workingMove = {
         init
-            .then(TakeEdge(3, ("well", "tree")))
-            .then(TakeEdge(3, ("flower", "well")))
+            .then(TakeEdge(1, ("house", "boat")))
+            .then(TakeEdge(2, ("house", "boat")))
     }
-
 }
