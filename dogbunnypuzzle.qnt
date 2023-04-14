@@ -101,9 +101,40 @@ module dogbunnypuzzle {
         )
     }
 
-    run workingMove = {
+    run testWorkingMove = {
         init
             .then(TakeEdge(1, ("house", "boat")))
             .then(TakeEdge(2, ("house", "boat")))
+    }
+
+    // optimal solution from http://hakank.org/picat/dogbunny_puzzle.pi
+    run winningRun = {
+        init
+            .then(TakeEdge(2,("boat","house")))
+            .then(TakeEdge(3,("tree","well")))
+            .then(TakeEdge(3,("well","carrot")))
+            .then(TakeEdge(1,("house","bone")))
+            .then(TakeEdge(3,("carrot","tree")))
+            .then(TakeEdge(3,("tree","well")))
+            .then(TakeEdge(3,("well","flower")))
+            .then(TakeEdge(2,("house","tree")))
+            .then(TakeEdge(1,("bone","boat")))
+            .then(TakeEdge(1,("boat","house")))
+            .then(TakeEdge(3,("flower","boat")))
+            .then(TakeEdge(3,("boat","house")))
+            .then(TakeEdge(2,("tree","well")))
+            .then(TakeEdge(2,("well","carrot")))
+            .then(TakeEdge(3,("house","bone")))
+            .then(TakeEdge(2,("carrot","tree")))
+            .then(TakeEdge(2,("tree","well")))
+            .then(TakeEdge(2,("well","flower")))
+            .then(TakeEdge(1,("house","tree")))
+            .then(TakeEdge(2,("flower","well")))
+            .then(TakeEdge(3,("bone","boat")))
+            .then(TakeEdge(2,("well","carrot")))
+            .then(TakeEdge(3,("boat","house")))
+            .then(TakeEdge(1,("tree","well")))
+            .then(TakeEdge(1,("well","carrot")))
+            .then(TakeEdge(3,("house","bone")))
     }
 }
