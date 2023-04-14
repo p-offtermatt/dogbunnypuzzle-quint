@@ -136,5 +136,11 @@ module dogbunnypuzzle {
             .then(TakeEdge(1,("tree","well")))
             .then(TakeEdge(1,("well","carrot")))
             .then(TakeEdge(3,("house","bone")))
+            .then(
+                all {
+                    assert(not(GameNotWonYet)), 
+                    curState' = curState
+                    }
+            )
     }
 }
