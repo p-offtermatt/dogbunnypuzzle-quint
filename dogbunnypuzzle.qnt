@@ -16,6 +16,7 @@ module dogbunnypuzzle {
     pure val Places = Set("bone", "tree", "house", "flower", "well", "carrot", "boat")
 
     pure val Entities = Set(1,2,3)
+
     pure val EntityTypes = Map(
         1 -> "bunny",
         2 -> "bunny",
@@ -93,14 +94,11 @@ module dogbunnypuzzle {
         Entities.forall(entity => curState.keys().contains(entity) and curState.get(entity).in(Places))
     }
 
-    val desiredState = Map(
-        1 -> "carrot",
-        2 -> "carrot",
-        3 -> "bone"
-    )
-
-    val reachDesiredState: bool = {
-        curState != desiredState
+    val GameNotWonYet: bool = {
+        Entities.forall(entity => 
+            (EntityTypes.get(entity) == "bunny" implies curState.get(entity) == "carrot") and
+            (EntityTypes.get(entity) == "dog" implies curState.get(entity) == "bone")
+        )
     }
 
     run workingMove = {
