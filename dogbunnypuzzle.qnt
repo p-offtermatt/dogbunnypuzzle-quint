@@ -95,10 +95,10 @@ module dogbunnypuzzle {
     }
 
     val GameNotWonYet: bool = {
-        Entities.forall(entity => 
+        not(Entities.forall(entity => 
             (EntityTypes.get(entity) == "bunny" implies curState.get(entity) == "carrot") and
             (EntityTypes.get(entity) == "dog" implies curState.get(entity) == "bone")
-        )
+        ))
     }
 
     run testWorkingMove = {
