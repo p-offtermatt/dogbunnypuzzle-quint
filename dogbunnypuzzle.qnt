@@ -1,3 +1,4 @@
+// -*- mode: Bluespec; -*-
 module dogbunnypuzzle {
     
     type Place = str
